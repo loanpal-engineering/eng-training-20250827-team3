@@ -125,9 +125,9 @@ def register():
         password = request.form['password']
         confirm_password = request.form['confirm_password']
         role = 'normal'
-        quote_id = None
-        if 'quote_id' in request.form:
-            quote_id = request.form['quote_id']
+        # quote_id = None
+        # if 'quote_id' in request.form:
+        #     quote_id = request.form['quote_id']
 
         if password != confirm_password:
             flash("Passwords do not match.", "danger")
@@ -160,10 +160,10 @@ def register():
             flash("Error creating user: " + str(e), "danger")
             return redirect(url_for('main.register'))
 
-        if quote_id:
-            quote = MortgageQuote.query.get(quote_id)
-            quote.user_id = user.id
-            db.session.commit()
+        # if quote_id:
+        #     quote = MortgageQuote.query.get(quote_id)
+        #     quote.user_id = user.id
+        #     db.session.commit()
 
         # Create a flask session
         session['user_id'] = user.id
